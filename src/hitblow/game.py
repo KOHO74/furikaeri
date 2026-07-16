@@ -1,4 +1,5 @@
 import random
+from .dheader import d_header
 
 def play():
     # 1から100の間でランダムな数字を1つ決める
@@ -6,10 +7,7 @@ def play():
     attempts = 0
     max_attempts = 6
 
-    print("=========================================")
-    print(" 🎮 数当てミニゲーム (1 〜 100) 🎮")
-    print(f" {max_attempts}回以内に正解の数字を当ててね！")
-    print("=========================================")
+    d_header(max_attempts)
 
     while attempts < max_attempts:
         try:
