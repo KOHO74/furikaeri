@@ -1,11 +1,38 @@
-"""ゲームの進行（入力・表示・ループ）。
+import random
 
-★ チームで足す機能は **自分の担当の場所**に書く（1機能=1ファイル）。
-   下の「ここに足す」場所は3か所（① 開始時 ② 入力コマンド ③ 勝利時）。
-   ペアごとに**別の場所**を直すので、並行作業でも衝突しない。
-   import も自分の場所の近くに書くこと（ファイル先頭にまとめない＝衝突回避）。
-"""
+def play():
+    # 1から100の間でランダムな数字を1つ決める
+    secret_number = random.randint(1, 100)
+    attempts = 0
+    max_attempts = 6
 
+    print("=========================================")
+    print(" 🎮 数当てミニゲーム (1 〜 100) 🎮")
+    print(f" {max_attempts}回以内に正解の数字を当ててね！")
+    print("=========================================")
+
+    while attempts < max_attempts:
+        try:
+            # プレイヤーに入力を促す
+            guess = int(input(f"\n[{attempts + 1}/{max_attempts}回目] 予想する数字を入力してね: "))
+        except ValueError:
+            print("⚠️ 数字を入力してね！")
+            continue
+
+        attempts += 1
+
+        # 判定
+        if guess < secret_number:
+            print("⬆️ もっと【大きい】よ！")
+        elif guess > secret_number:
+            print("⬇️ もっと【小さい】よ！")
+        else:
+            print(f"\n🎉 おめでとう！！ {attempts}回目で大正解！ 🥳")
+            break
+    else:
+        print(f"\n💀 ゲームオーバー...！ 正解は【{secret_number}】でした。")
+
+'''
 from .core import judge, make_secret
 
 
@@ -36,3 +63,4 @@ def play(digits=3):
 
             print(f"正解！ {tries} 回で当たり（答え {secret}）")
             break
+'''
